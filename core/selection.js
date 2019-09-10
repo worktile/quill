@@ -3,6 +3,8 @@ import clone from 'clone';
 import equal from 'deep-equal';
 import Emitter from './emitter';
 import logger from './logger';
+import Break from '../blots/break';
+import Block from '../blots/block';
 
 const debug = logger('quill:selection');
 
@@ -65,12 +67,23 @@ class Selection {
     this.update(Emitter.sources.SILENT);
   }
 
+  isBlank() {
+    if (this.scroll.children.length === 0) return true;
+    if (this.scroll.children.length > 1) return false;
+    const block = this.scroll.children.head;
+    if (block.statics.blotName !== Block.blotName) return false;
+    if (block.children.length > 1) return false;
+    return block.children.head instanceof Break;
+  }
+
   handleComposition() {
     this.root.addEventListener('compositionstart', () => {
+      this.root.classList.toggle('ql-blank', false);
       this.composing = true;
       this.scroll.batchStart();
     });
     this.root.addEventListener('compositionend', () => {
+      this.root.classList.toggle('ql-blank', this.isBlank());
       this.scroll.batchEnd();
       this.composing = false;
       if (this.cursor.parent) {
