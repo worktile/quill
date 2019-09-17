@@ -18,16 +18,20 @@ class Tooltip {
 
   position(reference) {
     let left = reference.left + reference.width / 2 - this.root.offsetWidth / 2;
+    const quillBounds = this.quill.root.getBoundingClientRect();
+    const containerBounds = this.boundsContainer.getBoundingClientRect();
+    const rootBounds = this.root.getBoundingClientRect();
     if (left < 0) {
       left = 8;
+    }
+    if (left > quillBounds.width - rootBounds.width - 8) {
+      left = quillBounds.width - rootBounds.width - 8;
     }
     // root.scrollTop should be 0 if scrollContainer !== root
     const top = reference.bottom + this.quill.root.scrollTop;
     this.root.style.left = `${left}px`;
     this.root.style.top = `${top}px`;
     this.root.classList.remove('ql-flip');
-    const containerBounds = this.boundsContainer.getBoundingClientRect();
-    const rootBounds = this.root.getBoundingClientRect();
     let shift = 0;
     if (rootBounds.right > containerBounds.right) {
       shift = containerBounds.right - rootBounds.right;
