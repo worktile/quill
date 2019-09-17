@@ -19,7 +19,7 @@ class Tooltip {
   position(reference) {
     let left = reference.left + reference.width / 2 - this.root.offsetWidth / 2;
     if (left < 0) {
-      left = 0;
+      left = 8;
     }
     // root.scrollTop should be 0 if scrollContainer !== root
     const top = reference.bottom + this.quill.root.scrollTop;
