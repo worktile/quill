@@ -43,8 +43,8 @@ webpack --config _develop/webpack.config.js --env.minimize
 # aws s3 sync s3://cdn.quilljs.com/$VERSION/ s3://cdn.quilljs.com/latest/ --profile quill
 
 # cd ..
-git tag v$VERSION -m "Version $VERSION"
-git push origin v$VERSION
-git push origin develop
+# git tag v$VERSION -m "Version $VERSION"
+# git push origin v$VERSION
+# git push origin develop
 
 # npm publish --tag dev
