@@ -52,8 +52,6 @@ class SnowTooltip extends BaseTooltip {
             const preview = LinkBlot.formats(link.domNode);
             this.preview.textContent = preview;
             this.preview.setAttribute('href', preview);
-            this.show();
-            this.position(this.quill.getBounds(this.linkRange));
             return;
           }
         } else {
