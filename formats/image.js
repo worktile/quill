@@ -6,10 +6,24 @@ const ATTRIBUTES = ['alt', 'height', 'width'];
 class Image extends EmbedBlot {
   static create(value) {
     const node = super.create(value);
+    const span = document.createElement('span');
     if (typeof value === 'string') {
       node.setAttribute('src', this.sanitize(value));
+      span.setAttribute('href', this.sanitize(value));
+      span.setAttribute('data-fancybox-href', this.sanitize(value.origin));
     }
-    return node;
+    if (value.thumb) {
+      node.setAttribute('src', this.sanitize(value.thumb));
+    }
+    if (value.origin) {
+      span.setAttribute('href', this.sanitize(value.origin));
+      span.setAttribute('data-fancybox-href', this.sanitize(value.origin));
+    }
+    span.setAttribute('data-fancybox-type', 'image');
+    span.setAttribute('data-fancybox-group', 'editor');
+    span.classList.add('fancybox');
+    span.appendChild(node);
+    return span;
   }
 
   static formats(domNode) {
