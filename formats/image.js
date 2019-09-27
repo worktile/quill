@@ -10,14 +10,14 @@ class Image extends EmbedBlot {
     if (typeof value === 'string') {
       node.setAttribute('src', this.sanitize(value));
       span.setAttribute('href', this.sanitize(value));
-      span.setAttribute('data-fancybox-href', this.sanitize(value.origin));
+      span.setAttribute('data-fancybox-href', this.sanitize(value));
     }
-    if (value.thumb) {
-      node.setAttribute('src', this.sanitize(value.thumb));
+    if (value.thumbUrl) {
+      node.setAttribute('src', this.sanitize(value.thumbUrl));
     }
-    if (value.origin) {
-      span.setAttribute('href', this.sanitize(value.origin));
-      span.setAttribute('data-fancybox-href', this.sanitize(value.origin));
+    if (value.originUrl) {
+      span.setAttribute('href', this.sanitize(value.originUrl));
+      span.setAttribute('data-fancybox-href', this.sanitize(value.originUrl));
     }
     span.setAttribute('data-fancybox-type', 'image');
     span.setAttribute('data-fancybox-group', 'editor');
