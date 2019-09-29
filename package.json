@@ -1,6 +1,6 @@
 {
   "name": "quill",
-  "version": "2.0.12",
+  "version": "2.0.14",
   "description": "Your powerful, rich text editor",
   "author": "Jason Chen <jhchen7@gmail.com>",
   "homepage": "http://quilljs.com",
@@ -155,7 +155,8 @@
     "test:functional": "./_develop/scripts/puppeteer.sh",
     "test:unit": "npm run build; karma start _develop/karma.config.js",
     "test:coverage": "webpack --env.coverage --config _develop/webpack.config.js; karma start _develop/karma.config.js --reporters coverage",
-    "travis": "npm run lint && karma start _develop/karma.config.js --reporters dots,saucelabs"
+    "travis": "npm run lint && karma start _develop/karma.config.js --reporters dots,saucelabs",
+    "copy-to-editor": "npm run build && cp \"./dist/quill.js\" ../ngx-tethys-editor/node_modules/quill/dist"
   },
   "keywords": [
     "editor",
